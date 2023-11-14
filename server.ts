@@ -1,10 +1,25 @@
 import express, { Express } from "express";
 import path from "path";
 
+import { logger } from "./middleware/logger";
 import { router } from "./routes/root";
+import { corsOptions } from "./config/corsOptions";
+
+import errorHandler from "./middleware/errorHandler";
+
+import cookieParser from "cookie-parser";
+import cors from "cors";
 
 const app: Express = express();
 const PORT: string | number = process.env.PORT || 3500;
+
+app.use(logger);
+
+app.use(cors(corsOptions));
+
+app.use(express.json());
+
+app.use(cookieParser());
 
 app.use("/", express.static(path.join(__dirname, "public")));
 
@@ -21,5 +36,7 @@ app.all("*", (req, res) => {
   }
 });
 
-// eslint-disable-next-line no-console
+app.use(errorHandler);
+
+//eslint-disable-next-line no-console
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
