@@ -9,6 +9,7 @@ import { logger, logEvents } from "./middleware/logger";
 import { router } from "./routes/root";
 import { corsOptions } from "./config/corsOptions";
 
+import { userRouter } from "./routes/userRoutes";
 import errorHandler from "./middleware/errorHandler";
 
 import cookieParser from "cookie-parser";
@@ -32,6 +33,7 @@ app.use(cookieParser());
 app.use("/", express.static(path.join(__dirname, "public")));
 
 app.use("/", router);
+app.use("/users", userRouter);
 
 app.all("*", (req, res) => {
   res.status(404);
