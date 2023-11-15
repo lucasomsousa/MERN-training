@@ -11,48 +11,30 @@ import { User } from "./User";
 @Entity()
 export class Note {
   @ObjectIdColumn()
-  id: ObjectId;
+  id!: ObjectId;
 
   @Column(() => User)
-  user: User;
+  user!: User;
 
   @Column()
-  title: string;
+  title!: string;
 
   @Column()
-  text: string;
+  text!: string;
 
   @Column({ default: false })
-  completed: boolean;
+  completed!: boolean;
 
   @CreateDateColumn({
     type: "timestamp",
     default: () => "CURRENT_TIMESTAMP(6)",
   })
-  created_at: Date;
+  created_at!: Date;
 
   @UpdateDateColumn({
     type: "timestamp",
     default: () => "CURRENT_TIMESTAMP(6)",
     onUpdate: "CURRENT_TIMESTAMP(6)",
   })
-  updated_at: Date;
-
-  constructor(
-    id: ObjectId,
-    user: User,
-    title: string,
-    text: string,
-    completed: boolean,
-    created_at: Date,
-    updated_at: Date
-  ) {
-    this.id = id;
-    this.user = user;
-    this.title = title;
-    this.text = text;
-    this.completed = completed;
-    this.created_at = created_at;
-    this.updated_at = updated_at;
-  }
+  updated_at?: Date;
 }

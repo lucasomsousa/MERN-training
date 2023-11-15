@@ -1,33 +1,20 @@
-import { Entity, ObjectId, ObjectIdColumn, Column } from "typeorm";
+import { BaseEntity, Column, Entity, ObjectId, ObjectIdColumn } from "typeorm";
 
+export type UserRole = "Employee" | "Manager" | "Admin";
 @Entity()
-export class User {
+export class User extends BaseEntity {
   @ObjectIdColumn()
-  id: ObjectId;
+  id!: ObjectId;
 
   @Column()
-  username: string;
+  username!: string;
 
-  @Column()
-  password: string;
+  @Column({ select: false })
+  password!: string;
 
   @Column({ default: ["Employee"] })
-  roles: string[];
+  roles!: UserRole[];
 
   @Column({ default: true })
-  active: boolean;
-
-  constructor(
-    id: ObjectId,
-    username: string,
-    password: string,
-    roles: string[],
-    active: boolean
-  ) {
-    this.id = id;
-    this.username = username;
-    this.password = password;
-    this.roles = roles;
-    this.active = active;
-  }
+  isActive!: boolean;
 }
