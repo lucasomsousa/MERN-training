@@ -1,0 +1,52 @@
+{
+  "name": "mern-training-backend",
+  "version": "1.0.0",
+  "description": "Repository created for developing a project using the MERN (Mongo, Express, React, Node) stack",
+  "main": "server.ts",
+  "scripts": {
+    "build": "npm run clean && npx tsc && npm run copy-files",
+    "clean": "rm -rf ./dist",
+    "copy-files": "cp -r ./public/ ./dist/ & cp -r ./views/ ./dist/",
+    "dev": "concurrently \"npx tsc --watch\" \"npx nodemon -q dist/server.js\"",
+    "lint": "eslint . --ext .ts",
+    "start": "node server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucasomsousa/MERN-training.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lucasomsousa/MERN-training/issues"
+  },
+  "homepage": "https://github.com/lucasomsousa/MERN-training#readme",
+  "dependencies": {
+    "@emotion/core": "^11.0.0",
+    "@emotion/css": "^11.11.2",
+    "bcrypt": "^5.1.1",
+    "class-validator": "^0.14.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "date-fns": "^2.30.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-async-handler": "^1.2.0",
+    "mongodb": "^5.9.1",
+    "reflect-metadata": "^0.1.13",
+    "ts-node": "^10.9.1",
+    "typeorm": "^0.3.17",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/cookie-parser": "^1.4.6",
+    "@types/cors": "^2.8.16",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.9.0",
+    "@types/uuid": "^9.0.7",
+    "concurrently": "^8.2.2",
+    "typescript": "^5.2.2"
+  }
+}
