@@ -10,6 +10,7 @@ import { router } from "./routes/root";
 import { corsOptions } from "./config/corsOptions";
 
 import { userRouter } from "./routes/userRoutes";
+import { noteRouter } from "./routes/noteRoutes";
 import errorHandler from "./middleware/errorHandler";
 
 import cookieParser from "cookie-parser";
@@ -34,6 +35,7 @@ app.use("/", express.static(path.join(__dirname, "public")));
 
 app.use("/", router);
 app.use("/users", userRouter);
+app.use("/notes", noteRouter);
 
 app.all("*", (req, res) => {
   res.status(404);
