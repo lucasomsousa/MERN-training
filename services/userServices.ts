@@ -43,6 +43,13 @@ export const updateUser = async (
   if (!userToUpdate) {
     throw new Error(`User with id ${id} not found.`);
   }
+
+  const duplicate = await getUserByUsernameRepository(username);
+
+  if (duplicate?.id !== id) {
+    throw new Error(`The username ${username} is already in use.`);
+  }
+
   userToUpdate.username = username;
   userToUpdate.roles = roles;
   userToUpdate.isActive = isActive;
@@ -61,7 +68,7 @@ export const deleteUser = async (id: ObjectId): Promise<User | null> => {
     throw new Error(`User with id ${id} not found.`);
   }
 
-  const note = await getUserNote(id);
+  const note = await getUserNote(userToDelete);
   if (note) {
     throw new Error(
       `User with id ${id} has assigned notes. Please delete them or assign them to another user before continuing.`

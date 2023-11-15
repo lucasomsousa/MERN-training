@@ -6,8 +6,8 @@ import { AppDataSource } from "../data-source";
 
 const userRepository = AppDataSource.getMongoRepository(User);
 
-export const getAllUsers = (): Promise<User[]> => {
-  return userRepository.find({
+export const getAllUsers = async (): Promise<User[]> => {
+  return await userRepository.find({
     select: ["id", "username", "isActive", "roles"],
   });
 };
